@@ -2,7 +2,7 @@
   "name": "@ilkkah/markdown-toolbar-element",
   "version": "1.5.0",
   "description": "Markdown formatting buttons for text inputs.",
-  "repository": "github/markdown-toolbar-element",
+  "repository": "ilkkah/markdown-toolbar-element",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
