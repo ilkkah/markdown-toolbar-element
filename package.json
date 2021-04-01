@@ -26,6 +26,7 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {"access": "public"},
   "devDependencies": {
     "@github/prettier-config": "0.0.4",
     "chai": "^4.2.0",
