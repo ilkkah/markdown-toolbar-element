@@ -330,7 +330,7 @@ class MarkdownToolbarElement extends HTMLElement {
   }
 
   get field(): HTMLTextAreaElement | null {
-    const id = this.getAttribute('for')
+    const id = this.getAttribute('data-for')
     if (!id) return null
     const root = 'getRootNode' in this ? this.getRootNode() : document
     let field
@@ -403,9 +403,11 @@ function shortcut(toolbar: Element, event: KeyboardEvent) {
   }
 }
 
-if (!window.customElements.get('markdown-toolbar')) {
-  window.MarkdownToolbarElement = MarkdownToolbarElement
-  window.customElements.define('markdown-toolbar', MarkdownToolbarElement)
+function init(): void {
+  if (!window.customElements.get('markdown-toolbar')) {
+    window.MarkdownToolbarElement = MarkdownToolbarElement
+    window.customElements.define('markdown-toolbar', MarkdownToolbarElement)
+  }
 }
 
 function isMultipleLines(string: string): boolean {
@@ -739,4 +741,4 @@ function applyStyle(button: Element, stylesToApply: Style) {
   }
 }
 
-export default MarkdownToolbarElement
+export default init
