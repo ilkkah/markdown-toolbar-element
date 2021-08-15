@@ -1,6 +1,6 @@
 {
   "name": "markdown-toolbar-element-ilkkah",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Markdown formatting buttons for text inputs.",
   "repository": "ilkkah/markdown-toolbar-element",
   "type": "module",
@@ -25,7 +25,9 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {"access": "public"},
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@github/prettier-config": "0.0.4",
     "chai": "^4.2.0",

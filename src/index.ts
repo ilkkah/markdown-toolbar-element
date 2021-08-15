@@ -80,6 +80,7 @@ type Style = {
   scanFor?: string
   orderedList?: boolean
   prefixSpace?: boolean
+  addSelectionAmount?: number
 }
 
 const styles = new WeakMap<Element, Style>()
@@ -196,7 +197,7 @@ if (!window.customElements.get('md-code')) {
 class MarkdownLinkButtonElement extends MarkdownButtonElement {
   constructor() {
     super()
-    styles.set(this, {prefix: '[', suffix: '](url)', replaceNext: 'url', scanFor: 'https?://'})
+    styles.set(this, {prefix: '[](', suffix: 'url)', replaceNext: 'url', scanFor: 'https?://', addSelectionAmount: 3})
   }
 
   connectedCallback() {
@@ -213,7 +214,7 @@ if (!window.customElements.get('md-link')) {
 class MarkdownImageButtonElement extends MarkdownButtonElement {
   constructor() {
     super()
-    styles.set(this, {prefix: '![', suffix: '](url)', replaceNext: 'url', scanFor: 'https?://'})
+    styles.set(this, {prefix: '![](', suffix: 'url)', replaceNext: 'url', scanFor: 'https?://', addSelectionAmount: 3})
   }
 }
 
@@ -561,7 +562,17 @@ function blockStyle(textarea: HTMLTextAreaElement, arg: StyleArgs): SelectionRan
   let newlinesToAppend
   let newlinesToPrepend
 
-  const {prefix, suffix, blockPrefix, blockSuffix, replaceNext, prefixSpace, scanFor, surroundWithNewlines} = arg
+  const {
+    prefix,
+    suffix,
+    blockPrefix,
+    blockSuffix,
+    replaceNext,
+    prefixSpace,
+    scanFor,
+    surroundWithNewlines,
+    addSelectionAmount
+  } = arg
   const originalSelectionStart = textarea.selectionStart
   const originalSelectionEnd = textarea.selectionEnd
 
@@ -601,7 +612,7 @@ function blockStyle(textarea: HTMLTextAreaElement, arg: StyleArgs): SelectionRan
   } else if (!hasReplaceNext) {
     let replacementText = prefixToUse + selectedText + suffixToUse
     selectionStart = originalSelectionStart + prefixToUse.length
-    selectionEnd = originalSelectionEnd + prefixToUse.length
+    selectionEnd = originalSelectionEnd + prefixToUse.length + addSelectionAmount
     const whitespaceEdges = selectedText.match(/^\s*|\s*$/g)
     if (arg.trimFirst && whitespaceEdges) {
       const leadingWhitespace = whitespaceEdges[0] || ''
@@ -700,6 +711,7 @@ interface StyleArgs {
   surroundWithNewlines: boolean
   orderedList: boolean
   trimFirst: boolean
+  addSelectionAmount: number
 }
 
 function numberedLines(lines: string[]) {
@@ -729,7 +741,8 @@ function applyStyle(button: Element, stylesToApply: Style) {
     scanFor: '',
     surroundWithNewlines: false,
     orderedList: false,
-    trimFirst: false
+    trimFirst: false,
+    addSelectionAmount: 0
   }
 
   const style = {...defaults, ...stylesToApply}
