@@ -197,7 +197,7 @@ if (!window.customElements.get('md-code')) {
 class MarkdownLinkButtonElement extends MarkdownButtonElement {
   constructor() {
     super()
-    styles.set(this, {prefix: '[](', suffix: 'url)', replaceNext: 'url', scanFor: 'https?://', addSelectionAmount: 3})
+    styles.set(this, {prefix: '[', suffix: '](url)', replaceNext: 'url', scanFor: 'https?://', addSelectionAmount: 1})
   }
 
   connectedCallback() {
