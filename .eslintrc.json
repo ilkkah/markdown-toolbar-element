@@ -4,26 +4,14 @@
     "plugin:github/recommended",
     "plugin:github/typescript"
   ],
-  "globals": {
-    "MarkdownToolbarElement": "readable",
-    "MarkdownHeaderButtonElement": "readable",
-    "MarkdownBoldButtonElement": "readable",
-    "MarkdownItalicButtonElement": "readable",
-    "MarkdownQuoteButtonElement": "readable",
-    "MarkdownCodeButtonElement": "readable",
-    "MarkdownLinkButtonElement": "readable",
-    "MarkdownImageButtonElement": "readable",
-    "MarkdownUnorderedListButtonElement": "readable",
-    "MarkdownOrderedListButtonElement": "readable",
-    "MarkdownTaskListButtonElement": "readable",
-    "MarkdownMentionButtonElement": "readable",
-    "MarkdownRefButtonElement": "readable"
-  },
   "overrides": [
     {
       "files": "test/**/*.js",
       "rules": {
-        "github/unescaped-html-literal": "off"
+        "github/unescaped-html-literal": "off",
+        "eslint-comments/no-use": "off",
+        "github/no-implicit-buggy-globals": "off",
+        "no-implicit-globals": "off"
       }
     }
   ]

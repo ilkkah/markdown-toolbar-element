@@ -51,7 +51,8 @@ const buttonSelectors = [
 ]
 function getButtons(toolbar: Element): HTMLElement[] {
   const els = []
-  for (const button of toolbar.querySelectorAll<HTMLElement>(buttonSelectors.join(', '))) {
+  const buttons = Array.from(toolbar.querySelectorAll<HTMLElement>(buttonSelectors.join(', ')))
+  for (const button of buttons) {
     // Skip buttons that are hidden, either via `hidden` attribute or CSS:
     if (button.hidden || (button.offsetWidth <= 0 && button.offsetHeight <= 0)) continue
     if (button.closest('markdown-toolbar') === toolbar) els.push(button)
@@ -385,7 +386,8 @@ function focusKeydown(event: KeyboardEvent) {
 const shortcutListeners = new WeakMap()
 
 function findHotkey(toolbar: Element, key: string): HTMLElement | null {
-  for (const el of toolbar.querySelectorAll<HTMLElement>('[hotkey]')) {
+  const elements = Array.from(toolbar.querySelectorAll<HTMLElement>('[hotkey]'))
+  for (const el of elements) {
     if (el.getAttribute('hotkey') === key) {
       return el
     }
@@ -667,7 +669,8 @@ function orderedList(textarea: HTMLTextAreaElement): SelectionRange {
   let text = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd)
   let textToUnstyle = text
   let lines = text.split('\n')
-  let startOfLine, endOfLine
+  let startOfLine
+  let endOfLine
   if (noInitialSelection) {
     const linesBefore = textarea.value.slice(0, textarea.selectionStart).split(/\n/)
     startOfLine = textarea.selectionStart - linesBefore[linesBefore.length - 1].length
