@@ -1,18 +1,13 @@
 {
   "name": "markdown-toolbar-element-ilkkah",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Markdown formatting buttons for text inputs.",
   "repository": "ilkkah/markdown-toolbar-element",
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "clean": "rm -rf dist",
     "lint": "eslint src/*.ts test/*.js",
-    "prebuild": "npm run clean && npm run lint && mkdir dist",
-    "build": "tsc --project ./tsconfig.json",
-    "pretest": "npm run build",
     "test": "karma start test/karma.config.cjs",
-    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "custom-element",
@@ -20,12 +15,6 @@
   ],
   "prettier": "@github/prettier-config",
   "license": "MIT",
-  "files": [
-    "dist"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
   "devDependencies": {
     "@github/prettier-config": "0.0.4",
     "@types/eslint": "^8.44.9",
