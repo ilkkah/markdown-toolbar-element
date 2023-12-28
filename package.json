@@ -7,7 +7,7 @@
   "main": "src/index.ts",
   "scripts": {
     "lint": "eslint src/*.ts test/*.js",
-    "test": "karma start test/karma.config.cjs",
+    "test": "karma start test/karma.config.cjs"
   },
   "keywords": [
     "custom-element",
